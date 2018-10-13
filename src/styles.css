@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=K2D');
+
+body {
+    background-color: #f3f5f6;
+    font-family: 'K2D', sans-serif;
+}

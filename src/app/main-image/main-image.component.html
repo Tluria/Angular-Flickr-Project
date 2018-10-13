@@ -1,0 +1,20 @@
+<div class="row justify-content-center">
+  <div class="col-xs-12">
+    <button class="btn btn-success custome-btn" (click)="imageRefresh()">Refresh Image</button>
+  </div>
+</div>
+
+ <div class="main-image">
+  <div>
+    <div class="image-wrapper">
+      <div class="wrapper-header">
+        <h3 class="title">{{currentImage.title}}</h3>
+        <h5 class="date">{{currentImage.dateTaken | date}}</h5>
+      </div>
+
+      <div class="wrapper-body">
+        <img id="img" src="{{currentImage.imageLink}}" alt="{{currentImage.title}}" width="700px" height="400px">
+      </div>
+    </div>
+  </div>
+</div>
