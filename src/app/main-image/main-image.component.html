@@ -1,11 +1,11 @@
 <div class="row justify-content-center">
   <div class="col-xs-12">
-    <button class="btn btn-success custome-btn" (click)="imageRefresh()">Refresh Image</button>
+    <button class="btn btn-success custome-btn" (click)="getImage()">Refresh Image</button>
   </div>
 </div>
 
- <div class="main-image">
-  <div>
+<div class="main-image">
+  <div *ngIf="!isLoading">
     <div class="image-wrapper">
       <div class="wrapper-header">
         <h3 class="title">{{currentImage.title}}</h3>
@@ -17,4 +17,6 @@
       </div>
     </div>
   </div>
+
+  <div *ngIf="isLoading">Loading...</div>
 </div>

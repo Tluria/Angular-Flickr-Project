@@ -26,11 +26,9 @@ export class ImageService {
           return data.items;
         }),
         map((data: any) => {
-          // const parser = new DOMParser();
-          // const doc = parser.parseFromString(data.description, 'text/xml');
-          // console.log(doc);
+          const title = data.title || 'Untitle';
           return new Image(
-            data.title || 'No Title', 
+            title, 
             data.description, 
             new Date(data.date_taken),
             data.media.m)

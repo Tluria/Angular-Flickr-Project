@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Image } from '../shared/models/image.model'
+import { Subscription } from 'rxjs/Subscription';
 
 import { ImageService } from './../shared/services/image.service';
 @Component({
@@ -9,37 +10,53 @@ import { ImageService } from './../shared/services/image.service';
 })
 export class MainImageComponent implements OnInit, OnDestroy {
 
+  isLoading: boolean = true;
   currentImage: Image;
   imageRefreshInterval: any;
   imagesHistory: string[] = [];
+  subscription: Subscription;
 
   constructor(private imageService: ImageService) { }
 
+  /**
+   * When component loaded fetch for the first time 
+   * image from flickr public api.
+   */
   ngOnInit() {
-    this.imageRefresh();
-    this.imageRefreshInterval = setInterval(() => this.imageRefresh(), 5000);
+    this.getImage();
+    this.imageRefreshInterval = setInterval(() => this.getImage(), 5000);
   }
 
+  /**
+   * Destroying the interval and the subscription
+   *  that will not continue running in 
+   * the background
+   */
   ngOnDestroy() {
     clearInterval(this.imageRefreshInterval);
+    this.subscription.unsubscribe();
   }
 
   getImage() {
-    this.imageService.getImageRandomly().subscribe(
+    this.subscription = this.imageService.getImageRandomly().subscribe(
       (image: Image) => {
-        if (!this.isImageDisplayed(image.title)) {
-          this.currentImage = image;
-          this.imagesHistory.push(image.title);
-        }
+          if (!this.isLoading) {
+            this.isLoading = true;
+          }
+
+          if (!this.isImageDisplayed(image.title)) {
+            this.currentImage = image;
+            this.imagesHistory.push(image.title);
+          } else {
+            this.getImage();
+          }
+          
+          this.isLoading = false;
       }
    );
   }
 
-  imageRefresh() {
-    this.getImage();
-  }
-
-  isImageDisplayed(imageName: string) {
+  isImageDisplayed(imageName: string = '') {
     return this.imagesHistory.includes(imageName);
   }
 }
