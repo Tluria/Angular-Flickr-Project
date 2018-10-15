@@ -1,6 +1,6 @@
 import { Injectable} from '@angular/core';
 import { HttpClient, HttpClientJsonpModule } from '@angular/common/http';
-import { map, flatMap, toArray, first } from 'rxjs/operators';
+import { map, flatMap, first } from 'rxjs/operators';
 
 import { Image } from './../models/image.model';
 

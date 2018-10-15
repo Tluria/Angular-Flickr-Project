@@ -4,19 +4,33 @@
   </div>
 </div>
 
-<div class="main-image">
-  <div *ngIf="!isLoading">
-    <div class="image-wrapper">
-      <div class="wrapper-header">
-        <h3 class="title">{{currentImage.title}}</h3>
-        <h5 class="date">{{currentImage.dateTaken | date}}</h5>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="main-image">
+      <div *ngIf="!isLoading">
+        <div class="image-wrapper">
+          <div class="wrapper-header">
+            <h3 class="title">{{currentImage.title}}</h3>
+            <h5 class="date">{{currentImage.dateTaken | date}}</h5>
+          </div>
+    
+          <div class="wrapper-body">
+            <img 
+              id="img" 
+              src="{{currentImage.imageLink}}" 
+              alt="{{currentImage.title}}" 
+              width="600px" height="400px">
+          </div>
+        </div>
       </div>
-
-      <div class="wrapper-body">
-        <img id="img" src="{{currentImage.imageLink}}" alt="{{currentImage.title}}" width="700px" height="400px">
-      </div>
+    
+      <div *ngIf="isLoading">Loading...</div>
     </div>
   </div>
+</div>
 
-  <div *ngIf="isLoading">Loading...</div>
+<div class="row justify-content-center" *ngIf="!isLoading">
+  <div class="col-xs-12">
+    <div class="description" [innerHTML]="currentImage.description"></div>
+  </div>
 </div>

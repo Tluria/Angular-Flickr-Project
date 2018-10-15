@@ -6,6 +6,8 @@
 .title {
     padding-top: 10px;
     width: 100%;
+    border-bottom: 1px #e0e0e0 solid;
+    line-height: 1.6
 }
 
 .date {
@@ -16,13 +18,18 @@
 .image-wrapper {
     margin-top: 10px;
     background-color: white;
-    width: 800px;
+    width: 600px;
     border-radius: 5px;
     box-shadow: 5px 10px 5px #d8d8d8;
 }
 
 .wrapper-header {
     height: 10%;
+    text-align: center;
+}
+
+.description {
+    width: 600px;
     text-align: center;
 }
 
